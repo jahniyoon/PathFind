@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6582699294179027285}
   - component: {fileID: 7567510821688904546}
   m_Layer: 5
-  m_Name: Tile_Plane
+  m_Name: Tile_Forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: -823916443
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da3e6bbb84c179140bc2ea270b6958bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 089ec694c2f50a748a5f490fa5616b5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da3e6bbb84c179140bc2ea270b6958bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 089ec694c2f50a748a5f490fa5616b5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
