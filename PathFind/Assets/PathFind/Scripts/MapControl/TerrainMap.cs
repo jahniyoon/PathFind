@@ -77,8 +77,61 @@ public class TerrainMap : TileMapController //타일맵 컨트롤러 상속
             allTileObjs.Swap(ref tempChangeTile, i);
             tempChangeTile.DestroyObj();
         }       // loop : 위에서 연산한 정보로 현재 타일맵에 바다를 적용하는 루프
-
         // } 타일맵의 일부를 일정 확률로 다른 타일로 교체하는 로직
+
+        // { 기존에 존재하는 타일의 순서를 조정하고, 컨트롤러를 캐싱하는 로직
+        TerrainController tempTerrain = default;
+        TerrainType terrainType = TerrainType.NONE;
+
+        int loopCnt = 0;
+        foreach (GameObject tile_ in allTileObjs)
+        {
+            tempTerrain = tile_.GetComponentMust<TerrainController>();
+            switch (tempTerrain.name)
+            {
+                case RDefine.TERRAIN_PREF_PLAIN:
+                    terrainType = TerrainType.PLAIN_PASS;
+                    break;
+                case RDefine.TERRAIN_PREF_OCEAN:
+                    terrainType = TerrainType.OCEAN_N_PASS;
+                    break;
+                default:
+                    terrainType = TerrainType.NONE;
+                    break;
+            }                    // switch: 지형별로 다른 설정을 한다.
+
+            // TODO : tempTerrain Setup 함수 필요함.
+            tempTerrain.transform.SetAsFirstSibling();  // 해당 오브젝트의 순위를 처음으로 변경 (가장 처음 출력되므로 겹쳐졋을 경우 가려집니다.)
+            allTerrains.Add(tempTerrain);
+            loopCnt += 1;
+            // loop : 타일의 이름과 렌더링 순서대로 정렬하는 루프
+
+            //// { 타일맵의 일부를 일정 확률로 숲 타일로 교체하는 로직 ========================
+            //GameObject changeTilePrefab2 = ResManager.Instance.terrainPrefabs
+            // [RDefine.TERRAIN_PREF_FOREST];
+
+            //// 숲으로 교체할 타일의 정보를 리스트 형태로 생성해서 섞는다.
+            //List<int> changedTileResult2 = GFunc.CreateList(allTileObjs.Count, 1);
+            //changedTileResult2.Shuffle();
+
+            //GameObject tempChangeTile2 = default;
+            //for (int i = 0; i < allTileObjs.Count; i++)
+            //{
+            //    if (correctChangePercentage <= changedTileResult2[i]) { continue; }
+
+            //    // 프리팹을 인스턴스화해서 교체할 타일의 트랜스폼을 복사한다.
+            //    tempChangeTile2 = Instantiate(
+            //        changeTilePrefab2, tileMap.transform);
+            //    tempChangeTile2.name = changeTilePrefab2.name;
+            //    tempChangeTile2.SetLocalScale(allTileObjs[i].transform.localScale);
+            //    tempChangeTile2.SetLocalPos(allTileObjs[i].transform.localPosition);
+
+            //    allTileObjs.Swap(ref tempChangeTile2, i);
+            //    tempChangeTile2.DestroyObj();
+            //}       // loop : 위에서 연산한 정보로 현재 타일맵에 바다를 적용하는 루프
+            //        // { 타일맵의 일부를 일정 확률로 다른 타일로 교체하는 로직 ========================
+        }
+        // } 기존에 존재하는 타일의 순서를 조정하고, 컨트롤러를 캐싱하는 로직
     }
 
     //! 초기화된 타일의 정보로 연산한 맵의 가로, 세로 크기를 리턴하는 함수
