@@ -55,7 +55,7 @@ public class TerrainMap : TileMapController //타일맵 컨트롤러 상속
             [RDefine.TERRAIN_PREF_OCEAN];
 
         // 타일맵 중에 어느 정도로 바다로 교체할 것인지 결정한다.
-        const float CHANGE_PERCENTAGE = 15.0f;
+        const float CHANGE_PERCENTAGE = 25.0f;
         float correctChangePercentage = allTileObjs.Count * (CHANGE_PERCENTAGE / 100.0f);
 
         // 바다로 교체할 타일의 정보를 리스트 형태로 생성해서 섞는다.
