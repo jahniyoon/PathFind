@@ -101,6 +101,7 @@ public class TerrainMap : TileMapController //타일맵 컨트롤러 상속
             }                    // switch: 지형별로 다른 설정을 한다.
 
             // TODO : tempTerrain Setup 함수 필요함.
+            tempTerrain.SetupTerrain(mapController, terrainType, loopCnt);
             tempTerrain.transform.SetAsFirstSibling();  // 해당 오브젝트의 순위를 처음으로 변경 (가장 처음 출력되므로 겹쳐졋을 경우 가려집니다.)
             allTerrains.Add(tempTerrain);
             loopCnt += 1;
